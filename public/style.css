@@ -1,0 +1,236 @@
+body {
+  background: rgba(0,0,0,0.9);
+  font-family: Sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgba(255,255,255,0.9);
+
+}
+.public button:not(.display), .public .btn:not(.display), .public input[type=submit]:not(.display) {
+  display: none !important;
+}
+header {
+  padding: 0 20px;
+}
+button, input[type=submit], .btn {
+  background: royalblue;
+  color: white !important;
+  font-size: 12px;
+  padding: 5px 20px;
+  border-radius: 2px;
+  border: none;
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+  display: inline-block !important;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.item {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-decoration: none;
+  display: block;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+}
+.item:nth-child(odd) {
+  background: rgba(43, 55, 140, 0.1);
+}
+h2 {
+  font-size: 14px;
+  color: royalblue;
+  margin: 0;
+}
+.form {
+  padding: 10px;
+  box-sizing: border-box;
+  /*
+  border-left: 3px solid rgba(255,255,255,0.2);
+  */
+}
+.form .item {
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  background: none;
+}
+.form .item label {
+  display: block;
+  color: royalblue;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 5px 0;
+}
+.form .name {
+  padding: 0;
+}
+input[type=text][disabled], input[type=number][disabled], textarea[disabled] {
+  border: 2px solid transparent;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.2);
+}
+input[type=text], input[type=number], select, textarea {
+  border: none;
+  width: 100%;
+  box-sizing:border-box;
+  padding: 10px;
+  color: white;
+  border: 1px solid rgba(65,105,225,0.7);
+  background: rgba(65,105,225,0.1);
+  /*
+  background: rgba(0,0,0,0.3);
+  */
+}
+select {
+  padding: 0px;
+  outline: none;
+}
+option {
+  padding: 10px;
+  outline: none;
+}
+option:checked {
+  font-weight: bold;
+}
+input[type=file] {
+  margin-top: 10px;
+}
+.hidden {
+  display: none;
+}
+.loading {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: royalblue;
+  flex-grow: 1;
+  border-radius: 2px;
+}
+.loading i {
+  padding: 10px;
+  display: inline-block;
+}
+.file-holder {
+  padding: 10px 0;
+}
+.file-holder:empty {
+  padding: 0;
+}
+.thumb {
+  height: 200px;
+  display: block;
+}
+.error:empty {
+  padding: 0;
+}
+.error {
+  z-index: 100000;
+  top: 0;
+  position: sticky;
+  background: gold;
+  padding: 10px;
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+.info {
+  margin: 10px 0;
+  padding: 20px;
+  background: rgba(43, 55, 140, 0.1);
+}
+.info h2 {
+  font-size: 30px;
+  margin: 5px;
+}
+h1 {
+  margin: 0;
+  padding: 0 20px;
+  letter-spacing: -3px;
+  font-size: 50px;
+}
+h3, h4 {
+  margin: 0;
+  font-family: Sans-serif;
+  font-size: 15px;
+}
+.bar {
+  padding: 0;
+  text-align: right;
+  flex-grow: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+.info .item {
+  padding: 10px 5px;
+  border: none;
+  /*
+  border-left: 2px solid rgba(0,0,0,0.1);
+  padding: 10px 20px;
+  */
+  display: flex;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-size: 14px;
+  align-items: center;
+  background: none;
+  flex-wrap: wrap;
+}
+* {
+  overflow-wrap: break-word;
+}
+.info .item .name {
+  width: 250px;
+  text-align: right;
+  flex-shrink: 0;
+  /*
+  padding: 0px 20px;
+  */
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+.info .item .val {
+  flex-grow: 1;
+  display: block;
+  text-align: left;
+  box-sizing: border-box;
+}
+.info .item a.val {
+  color: royalblue;
+  font-family: Menlo, monaco, monospace; 
+  font-size: 12px;
+  text-decoration: none;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+/*
+.info .item .val input[type=text] {
+  background: lavender;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+}
+*/
+.flexible {
+  flex-grow: 1;
+}
+.top {
+  padding: 20px;
+  background: rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
