@@ -7,12 +7,12 @@ const url = (network, address, tokenId, website) => {
   let payload = {
     rinkeby: {
       opensea: `https://testnets.opensea.io/assets/${address}/${tokenId}`,
-      rarible: `https://rinkeby.rarible.com/token/${address}:${tokenId}`,
+      rarible: `https://rinkeby.rarible.com/token/${address.toLowerCase()}:${tokenId}`,
       looksrare: `https://rinkeby.looksrare.org/collections/${address}/${tokenId}`
     },
     mainnet: {
       opensea: `https://opensea.io/assets/${address}/${tokenId}`,
-      rarible: `https://rarible.com/token/${address}:${tokenId}`,
+      rarible: `https://rarible.com/token/${address.toLowerCase()}:${tokenId}`,
       looksrare: `https://looksrare.org/collections/${address}/${tokenId}`
     }
   }

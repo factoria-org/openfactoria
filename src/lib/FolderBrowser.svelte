@@ -1,7 +1,12 @@
 <script>
 import localforage from 'https://esm.run/localforage';
 import { fileFolders, metadataFolders } from './store.js';
-import { refreshDB } from './db.js';
+import { removeFromDB, refreshDB } from './db.js';
+const rm = async (type, name) => {
+  await removeFromDB(type, name)
+  $metadataFolders = await refreshDB("metadata")
+  $fileFolders = refreshDB("file")
+}
 $: {
   refreshDB("metadata").then((_metadatas) => {
     $metadataFolders = _metadatas
@@ -21,9 +26,12 @@ $: {
         <h3>{folder.name}</h3>
         <div>{folder.cid}</div>
       </a>
+      <button on:click={() => { rm("file", folder.name) }}><i class="fa-solid fa-trash-can"></i></button>
     </div>
   {/each}
   </div>
+{:else}
+  <div class='empty'>empty</div>
 {/if}
 </div>
 <div class='tab'>
@@ -36,9 +44,12 @@ $: {
         <h3>{folder.name}</h3>
         <div>{folder.cid}</div>
       </a>
+      <button on:click={() => { rm("metadata", folder.name) }}><i class="fa-solid fa-trash-can"></i></button>
     </div>
   {/each}
   </div>
+{:else}
+  <div class='empty'>empty</div>
 {/if}
 </div>
 <style>
@@ -46,7 +57,9 @@ $: {
   margin-bottom: 30px;
 }
 .tab h2 {
-  padding: 0 20px; 
+  color: white;
+  padding: 0 10px; 
+  border-left: 4px solid white;
 }
 .info {
   padding: 0;
@@ -56,5 +69,17 @@ $: {
 }
 .item .val {
   color: rgba(255,255,255,0.8);
+}
+.empty {
+  padding: 20px;
+  font-size: 12px;
+  background: rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  margin-top: 10px;
+}
+.item button {
+  background: none;
+  color: royalblue !important;
 }
 </style>

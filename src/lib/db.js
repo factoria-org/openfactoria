@@ -4,6 +4,11 @@ export const getDB = (name) => {
     name,
   });
 }
+export const removeFromDB = async (name, key) => {
+  console.log("remove", name, key)
+  const db = getDB(name)
+  await db.removeItem(key)
+}
 export const refreshDB = async (name) => {
   const db = getDB(name)
   let items = []

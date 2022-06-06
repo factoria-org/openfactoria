@@ -1,0 +1,1 @@
+import n from"https://esm.run/localforage";const c=o=>n.createInstance({name:o}),l=async(o,e)=>{console.log("remove",o,e),await c(o).removeItem(e)},m=async o=>{const e=c(o);let t=[];return await e.iterate(function(s,r,a){console.log(s,r),t.push({name:r,cid:s})}),console.log(o,"items",t),t};export{l as a,c as g,m as r};
