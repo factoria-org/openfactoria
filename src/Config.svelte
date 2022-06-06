@@ -3,11 +3,13 @@ import localforage from 'https://esm.run/localforage';
 import Nav from './lib/Nav.svelte'
 let db = localforage.createInstance({ name: "api_key" })
 let key = "";
+let disabled = "";
 db.getItem("key").then((_key) => {
   key = _key
 })
 const save = async () => {
   await db.setItem("key", key)
+  disabled = "disabled"
 }
 </script>
 <Nav config={"selected"} />
@@ -18,9 +20,11 @@ const save = async () => {
     <input type='text' placeholder="NFT.STORAGE key" bind:value={key}>
   </div>
   <div class='item'>
-    <input type='submit' value="save" />
+    {#if !disabled}
+    <input {disabled} type='submit' value="save" />
     <br><br>
     <div class='description'>You can get a free API key at <a href="https://nft.storage">https://nft.storage</a></div>
+    {/if}
   </div>
 </form>
 </div>
