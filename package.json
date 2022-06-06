@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && echo 'open.factoria.app' > docs/CNAME",
     "preview": "vite preview"
   },
   "devDependencies": {
