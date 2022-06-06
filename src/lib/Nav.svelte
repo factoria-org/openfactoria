@@ -13,7 +13,7 @@ export let account;
   -->
   <div class='buttons'>
     <a href="https://factoria.app/docs"><i class="fa-solid fa-circle-question"></i></a>
-    <a href="https://github.com/factoria-org/factoriax"><i class="fa-brands fa-github"></i></a>
+    <a href="https://github.com/factoria-org/openfactoria"><i class="fa-brands fa-github"></i></a>
     <a href="https://twitter.com/skogard"><i class="fa-brands fa-twitter"></i></a>
     <a href="https://discord.gg/BZtp5F6QQM"><i class="fa-brands fa-discord"></i></a>
   </div>
