@@ -71,46 +71,50 @@ const close = () => {
 }
 onMount(async () => {
   loading = true;
-  if (location.hash.length > 0) {
-    let u = location.hash.slice(1)
-    let chunks = u.split(":")
-    contract = chunks[0]
-    if (chunks.length > 1) {
-      inviteKey = chunks[1]
+  try {
+    if (location.hash.length > 0) {
+      let u = location.hash.slice(1)
+      let chunks = u.split(":")
+      contract = chunks[0]
+      if (chunks.length > 1) {
+        inviteKey = chunks[1]
+      }
+    } else {
+      error = "[ERROR] no contract address specified"
+      return
     }
-  } else {
-    error = "[ERROR] no contract address specified"
-    return
-  }
-  await f0.init({
-    web3,
-    contract,
-  })
-  let chainId = await web3.eth.getChainId();
-  netPrefix = (chainId.toString() === "4" ? "rinkeby." : "")
-  name = await f0.api.name().call()
-  symbol = await f0.api.symbol().call()
-  invites = await f0.myInvites()
-  if (invites && invites[inviteKey]) {
-    await authgen(invites[inviteKey]) 
-  }
-  inviteItems = [] 
-  for(let key in invites) {
-    let o = invites[key].condition
-    let date = new Date(o.converted.start)
-
-    if (o.converted.limit > 0) {
-      inviteItems.push({
-        name: invites[key].name,
-        key: key,
-        cid: invites[key].cid,
-        limit: `${o.converted.limit}`,
-        price: `${o.converted.eth}`,
-        start: `${date.toDateString()} ${date.toLocaleTimeString()}`,
-        startUnix: o.raw.start,
-      })
+    await f0.init({
+      web3,
+      contract,
+    })
+    let chainId = await web3.eth.getChainId();
+    netPrefix = (chainId.toString() === "4" ? "rinkeby." : "")
+    name = await f0.api.name().call()
+    symbol = await f0.api.symbol().call()
+    invites = await f0.myInvites()
+    if (invites && invites[inviteKey]) {
+      await authgen(invites[inviteKey]) 
     }
+    inviteItems = [] 
+    for(let key in invites) {
+      let o = invites[key].condition
+      let date = new Date(o.converted.start)
 
+      if (o.converted.limit > 0) {
+        inviteItems.push({
+          name: invites[key].name,
+          key: key,
+          cid: invites[key].cid,
+          limit: `${o.converted.limit}`,
+          price: `${o.converted.eth}`,
+          start: `${date.toDateString()} ${date.toLocaleTimeString()}`,
+          startUnix: o.raw.start,
+        })
+      }
+
+    }
+  } catch (e) {
+    error = e.message
   }
   loading = false;
 })
