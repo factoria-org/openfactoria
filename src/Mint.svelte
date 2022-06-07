@@ -138,6 +138,7 @@ onMount(async () => {
 <div class='showauth info'>
   <div class='header'>
     <div class='invitename'>
+      <div class='faded'>invite</div>
       <div>{selectedInvite.name ? selectedInvite.name : selectedInvite.key}</div>
     </div>
     <div class='flexible'></div>
@@ -202,10 +203,9 @@ onMount(async () => {
   font-weight: bold;
 }
 nav {
-  padding: 20px 0 40px;
+  padding: 20px 0;
   font-size: 14px;
   color: rgba(255,255,255,0.8);
-  text-align: center;
 }
 nav h1 {
   padding: 0;
@@ -355,10 +355,14 @@ h2 {
   line-height: 30px;
 }
 .ns {
+/*
   border-left: 10px solid white;
   margin: 10px 5px 20px;
   padding: 10px 20px;
+  */
+  padding: 30px;
   font-size: 14px;
+  background: rgba(0,0,0,0.2);
   color: rgba(255,255,255,0.6);
 }
 .annotation {
