@@ -17,6 +17,7 @@ export default defineConfig({
         files: resolve(d, 'files/index.html'),
         v1: resolve(d, 'v1/index.html'),
         v2: resolve(d, 'v2/index.html'),
+        mint: resolve(d, 'mint/index.html'),
       }
     }
   },

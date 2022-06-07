@@ -7,7 +7,7 @@ export let network;
 export let account;
 </script>
 <nav>
-  <a class='brand' href="/">OpenFactoria</a>
+  <a class='brand' href="/">Factoria</a>
   <!--
   <div class='desc'>NFT vending machine</div>
   -->

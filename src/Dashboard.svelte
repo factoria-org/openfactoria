@@ -40,7 +40,6 @@ let current_account;
 const get = async () => {
   loading = true;
   if (location.hash.length > 0) {
-    contract 
     let u = location.hash.slice(1)
     let chunks = u.split(":")
     contract = chunks[0]
@@ -73,9 +72,14 @@ const get = async () => {
   current_network = (chainId.toString() === "4" ? "rinkeby" : "mainnet")
   console.log("config", config)
   items = [{
-    name: "Instantly publish your own vending machine website",
+    name: "Default vending machine",
+    link: "/mint/#" + contract,
+    text: "Open vending machine",
+    className: "btn display"
+  }, {
+    name: "Build your own custom vending machine website",
     link: "https://skinnerbox.factoria.app#" + contract,
-    text: "Go to skinnerbox factory",
+    text: "Open skinnerbox factory",
     className: "btn display"
   }, {
     name: "etherscan",
