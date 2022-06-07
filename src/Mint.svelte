@@ -188,10 +188,13 @@ onMount(async () => {
         {/each}
       </table>
     {:else}
-      <div class='empty'>you are not on any invite list</div>
+      <div class='empty'>you are not on any invite list<br>for this vending machine</div>
     {/if}
   {/if}
 {/if}
+<footer>
+  <i class="fa-solid fa-circle-info"></i> Experiencing slow load time?<br><br>anyone can <a target="_blank" href="https://skinnerbox.factoria.app/#{contract}">instantly deploy this vending machine and mint!</a>
+</footer>
 </div>
 <style>
 .title {
@@ -386,5 +389,28 @@ h2 {
 .ns a img {
   height: 12px;
   vertical-align: top;
+}
+.empty {
+  text-transform: uppercase;
+  padding: 50px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  background: rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.6);
+}
+footer {
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 14px;
+  font-family: Menlo, monaco, monospace;
+  background: rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+footer a {
+  color: royalblue;
+  text-decoration: none;
 }
 </style>
