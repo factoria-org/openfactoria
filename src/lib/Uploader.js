@@ -4,8 +4,7 @@ export let uploadPlaceholder = async (file) => {
   let apidb = getDB("api_key")
   let key = await apidb.getItem("key")
   if (!key) {
-    alert("NFT.STORAGE api key needed. Go to the config page and set it first")
-    location.href = "/config/"
+    throw new Error()
   }
   let token = key
   const storage = new NFTStorage({ token })

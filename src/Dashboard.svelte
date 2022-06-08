@@ -195,8 +195,15 @@ const Ns = {
 const upload = async () => {
   if (files.length > 0) {
     uploading = true
-    let metacid = await uploadPlaceholder(files[0])
-    config.raw.placeholder = "ipfs://" + metacid
+    try {
+      let metacid = await uploadPlaceholder(files[0])
+      config.raw.placeholder = "ipfs://" + metacid
+    } catch (e) {
+      let confirmed = confirm("NFT.STORAGE api key needed. Go to the config page and set it first")
+      if (confirmed) {
+        window.open("/config/")
+      }
+    }
     uploading = false;
   }
 }

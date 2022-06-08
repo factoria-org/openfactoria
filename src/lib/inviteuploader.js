@@ -4,8 +4,10 @@ export let uploadInvite = async (list, name) => {
   let apidb = getDB("api_key")
   let key = await apidb.getItem("key")
   if (!key) {
-    alert("NFT.STORAGE api key needed. Go to the config page and set it first")
-    location.href = "/config/"
+    let confirmed = confirm("NFT.STORAGE api key needed. Go to the config page and set it first")
+    if (confirmed) {
+      location.href = "/config/"
+    }
   }
   let token = key
   const storage = new NFTStorage({ token })

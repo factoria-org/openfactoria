@@ -116,7 +116,7 @@ init()
         <div class='val'>
           <div class='faded'>Moneypipe</div>
           <div class='annotation'>Auto-split mint revenue among multiple people using moneypipe:</div>
-          <a class='btn display' href="https://moneypipe.xyz">Create a revenue split on Moneypipe</a>
+          <a target="_blank" class='btn display' href="https://moneypipe.xyz">Create a revenue split on Moneypipe</a>
         </div>
       </div>
     </div>
