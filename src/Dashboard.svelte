@@ -148,7 +148,6 @@ const Config = {
   save: async () => {
     let isvalid = (config.raw.base.length === 0 || /ipfs:\/\/[^/]+\//.test(config.raw.base))
     if (isvalid) {
-      loading = true;
       try {
         Config.transacting = true;
         let tx = await f0.api.setConfig(config.raw).send()
@@ -159,7 +158,6 @@ const Config = {
         error = e.message
         Config.transacting = false;
       }
-      loading = false;
     } else {
       error = "The base URI must take the following format: 'ipfs://<cid>/', or an empty string"
     }
