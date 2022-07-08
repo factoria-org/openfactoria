@@ -4,8 +4,10 @@ import { handleError } from './lib/errors.js'
 import Nav from './lib/Nav.svelte'
 import { uploadPlaceholder } from './lib/Uploader.js';
 import { factory } from './lib/factory.js';
+import { walletconnect } from './settings.js';
 export let version;
-let web3 = new Web3(window.ethereum)
+let web3;
+let superprovider
 let collections = []
 let uploading = false;
 let deploying;
@@ -26,12 +28,9 @@ let current_network;
 let factory_contract;
 const getcollections = async () => {
   loading = true;
-  let accounts = await window.ethereum.send('eth_requestAccounts');
-  let account = accounts.result[0]
-  current_account = account;
-  console.log("current_account", current_account)
+  current_account = await superprovider.account;
   let _collections = await factory_contract.getPastEvents("CollectionAdded", {
-    filter: { receiver: account },
+    filter: { receiver: current_account },
     fromBlock: 0,
     toBlock: 'latest'
   }).then((r) => {
@@ -64,7 +63,7 @@ const getcollections = async () => {
       contract: address,
     })
     let owner = await f0.api.owner().call()
-    if (owner.toLowerCase() !== account.toLowerCase()) {
+    if (owner.toLowerCase() !== current_account.toLowerCase()) {
       console.log("remove at", i)
       toremove.push(i)
       continue
@@ -89,11 +88,9 @@ const genesis = async () => {
   deploying = true;
   console.log("payload", payload)
   let all = "0x0000000000000000000000000000000000000000000000000000000000000000"  // bytes32 version of "*"
-  let accounts = await window.ethereum.send('eth_requestAccounts');
-  let account = accounts.result[0]
   try {
     let tx = await factory_contract.methods.genesis(
-      account,
+      current_account,
       payload.name,
       payload.symbol,
       {
@@ -102,7 +99,7 @@ const genesis = async () => {
         supply: payload.supply,
         permanent: false
       },
-    ).send({ from: account })
+    ).send({ from: current_account })
     console.log("tx", tx)
     deploying = false;
     location.href = "/contract/#" + tx.events.CollectionAdded.returnValues.collection
@@ -139,11 +136,21 @@ $: {
 }
 let isv2 = (version === "v2" ? "selected" : "")
 let isv1 = (version === "v1" ? "selected" : "")
-loading = true;
 onMount(async () => {
-  factory_contract = await factory(web3, version)
-  current_network = factory_contract.$network
-  await getcollections()
+  try {
+    superprovider = new Superprovider({ walletconnect })
+    let provider = await superprovider.current()
+    if (!provider) {
+      provider = await superprovider.connect()
+    }
+    current_account = superprovider.account
+    web3 = new Web3(provider)
+    factory_contract = await factory(web3, version)
+    current_network = factory_contract.$network
+    await getcollections()
+  } catch (e) {
+    error = e.message
+  }
 })
 </script>
 <div class='error'>{error}</div>

@@ -2,6 +2,7 @@
 import { handleError } from './lib/errors.js'
 import MintTable from './lib/MintTable.svelte';
 import { onMount, createEventDispatcher } from 'svelte';
+import { walletconnect } from './settings.js';
 const dispatch = createEventDispatcher();
 let invites = {}
 let inviteItems = []
@@ -21,7 +22,9 @@ let name
 let symbol
 let valueEth;
 let netPrefix;
-let web3 = new Web3(window.ethereum)
+let network;
+let web3;
+let superprovider;
 const authgen = async (_invite) => {
   selectedInvite = _invite;
   showauth = true;
@@ -69,7 +72,7 @@ const close = () => {
   location.hash = "#" + contract
   showauth = false;
 }
-onMount(async () => {
+const render = async () => {
   loading = true;
   try {
     if (location.hash.length > 0) {
@@ -89,6 +92,8 @@ onMount(async () => {
     })
     let chainId = await web3.eth.getChainId();
     netPrefix = (chainId.toString() === "4" ? "rinkeby." : "")
+    network = (chainId.toString() === "4" ? "rinkeby" : "mainnet")
+
     name = await f0.api.name().call()
     symbol = await f0.api.symbol().call()
     invites = await f0.myInvites()
@@ -117,6 +122,22 @@ onMount(async () => {
     error = e.message
   }
   loading = false;
+}
+onMount(async () => {
+  let provider
+  superprovider = new Superprovider({
+    walletconnect
+  })
+  try {
+    let provider = await superprovider.current();
+    if (!provider) {
+      provider = await superprovider.connect()
+    }
+    web3 = new Web3(provider)
+  } catch (e) {
+    error = e.message
+  }
+  await render()
 })
 </script>
 <div class='error'>{error}</div>
@@ -131,6 +152,15 @@ onMount(async () => {
     <a href="https://discord.gg/BZtp5F6QQM"><i class="fa-brands fa-discord"></i></a>
   </div>
 </nav>
+{#if network}
+<div class='network'>
+  <div>{network}</div>
+  <div class='flexible'></div>
+  {#if f0 && f0.account}
+  <div class='account'>{f0.account}</div>
+  {/if}
+</div>
+{/if}
 {#if name}
 <div class='ns'>
   <h2>{name} ({symbol})</h2>
@@ -412,5 +442,19 @@ footer {
 footer a {
   color: royalblue;
   text-decoration: none;
+}
+.network {
+  font-weight: bold;
+  color: yellowgreen;
+  border-left: 5px solid yellowgreen;
+  padding: 5px 10px;
+  margin: 0 0 20px;
+  font-size: 12px;
+}
+.account {
+  color: yellowgreen;
+  font-size: 12px;
+  font-weight: normal;
+  font-family: Menlo, monaco, monospace;
 }
 </style>

@@ -9,6 +9,7 @@ import Royalty from './lib/Royalty.svelte'
 import Gift from './lib/Gift.svelte'
 import { refreshDB } from './lib/db.js';
 import { uploadPlaceholder } from './lib/Uploader.js';
+import { walletconnect } from './settings.js';
 let folders = []
 const f0 = new F0()
 let name = ""
@@ -34,13 +35,15 @@ let role;
 let action;
 let inviteKey;
 let abistr;
-let web3 = new Web3(window.ethereum)
+let superprovider;
+let web3;
 let InviteAnchor;
 let current_network;
 let current_account;
 let bootstrapped;
 let defaultItem;
 const get = async () => {
+  loading = true;
   if (location.hash.length > 0) {
     let u = location.hash.slice(1)
     let chunks = u.split(":")
@@ -67,7 +70,6 @@ const get = async () => {
     link: `https://${netPrefix}etherscan.io/address/${contract}`,
     text: `https://${netPrefix}etherscan.io/address/${contract}`,
   }
-  current_account = f0.account;
   abistr = JSON.stringify(f0.abi,null,2)
   owner = await f0.api.owner().call()
   role = (owner.toLowerCase() === f0.account.toLowerCase() ? "admin" : "public")
@@ -115,6 +117,7 @@ const get = async () => {
     text: config.raw.permanent.toString(),
     editable: false
   }]
+  loading = false
 }
 
 const refresh = async () => {
@@ -214,15 +217,19 @@ const init = async () => {
   bootstrapped = true;
 }
 onMount(async () => {
-  loading = true;
   try {
+    superprovider = new Superprovider({ walletconnect })
+    let provider = await superprovider.current()
+    if (!provider) {
+      provider = await superprovider.connect()
+    }
+    current_account = superprovider.account
+    web3 = new Web3(provider)
     await init()
   } catch (e) {
     error = e.message
   }
-  loading = false;
 })
-loading
 $: {
   if (config && config.raw) {
     Object.keys(config.raw).forEach((key) => {
@@ -398,6 +405,7 @@ $: {
     <Ownership role={role} contract={contract} web3={web3} chainId={chainId} on:error={triggererror} />
   </div>
 {/if}
+{#if abistr && abistr.length > 0}
 <div class='info'>
   <div class='abi'>
     <h2>ABI</h2>
@@ -405,6 +413,7 @@ $: {
     <textarea readonly bind:value={abistr}></textarea>
   </div>
 </div>
+{/if}
 </div>
 {/if}
 <style>
