@@ -89,11 +89,6 @@ const genesis = async () => {
   console.log("payload", payload)
   let all = "0x0000000000000000000000000000000000000000000000000000000000000000"  // bytes32 version of "*"
   try {
-    await superprovider.disconnect()
-    let provider = await superprovider.connect()
-    web3 = new Web3(provider)
-    factory_contract = await factory(web3, version)
-    current_network = factory_contract.$network
     let tx = await factory_contract.methods.genesis(
       current_account,
       payload.name,
