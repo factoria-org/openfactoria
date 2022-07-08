@@ -152,6 +152,7 @@ button, input[type=submit], .btn {
 }
 .name {
   text-align: left;
+  margin-bottom: 10px;
 }
 .item {
   padding: 10px 0;

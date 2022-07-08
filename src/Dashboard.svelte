@@ -439,6 +439,7 @@ h1 {
   text-align: left;
   color: rgba(255,255,255,0.9);
   padding: 0;
+  margin-bottom: 10px;
 }
 .folder > * {
   margin-bottom: 2px;
@@ -451,5 +452,9 @@ h1 {
 }
 .abi textarea {
   height: 300px;
+}
+table {
+  table-layout:fixed;
+  width:100%;
 }
 </style>

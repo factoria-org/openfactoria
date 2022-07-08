@@ -323,6 +323,7 @@ $: {
   {/if}
 </div>
 {/if}
+<div class='table-container'>
 <table>
   <tr>
     <th>Name</th>
@@ -372,15 +373,17 @@ $: {
   {/each}
 </table>
 </div>
+</div>
 <style>
+.table-container {
+  overflow-x: auto;
+}
 .head {
   margin: 10px 5px;
 }
 table {
-  width: 100%;
   box-sizing: border-box;
   padding: 0px;
-  table-layout: fixed;
 }
 th {
   padding: 10px;
@@ -391,6 +394,7 @@ th {
 }
 td {
   padding: 10px;
+  min-width: 100px;
   box-sizing: border-box;
   background: rgba(0,0,0,0.1);
   font-size: 14px;
