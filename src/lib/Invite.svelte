@@ -91,7 +91,12 @@ const hexcid = (cid) => {
 const createInvite = async () => {
   publishingInvite = true
   let cid = hexcid(listCid)
-  let tx = await f0.api.setInvite(root, cid, invite).send()
+  let i = {
+    price: "" + parseFloat(invite.price) * (10 ** 18),
+    limit: invite.limit,
+    start: invite.start
+  }
+  let tx = await f0.api.setInvite(root, cid, i).send() 
   console.log("tx", tx)
   publishingInvite = false
   inviteFormStyle = "hidden"
@@ -104,7 +109,7 @@ let invite = {
   start: 0
 };
 const edit = (_invite) => {
-  invite.price = _invite.priceWei
+  invite.price = _invite.price
   invite.limit = _invite.limit
   invite.start = _invite.startUnix
   root = _invite.key
@@ -250,7 +255,7 @@ $: {
   <div class='item'>
     <div class='name'>price</div>
     <div class='val'>
-      <div class='annotation'>{invite.price / 10 ** 18} ETH</div>
+      <div class='annotation'>{invite.price} ETH ({invite.price * 10 ** 18} wei)</div>
       <input type='text' bind:value={invite.price}>
     </div>
   </div>
