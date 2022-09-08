@@ -149,7 +149,7 @@ const Config = {
     })
   },
   save: async () => {
-    let isvalid = (config.raw.base.length === 0 || /ipfs:\/\/[^/]+\//.test(config.raw.base))
+    let isvalid = (config.raw.base.length === 0 || /ipfs:\/\/[^/]+\//.test(config.raw.base) || /https?[^/]+\//.test(config.raw.base))
     if (isvalid) {
       try {
         Config.transacting = true;
@@ -162,7 +162,7 @@ const Config = {
         Config.transacting = false;
       }
     } else {
-      error = "The base URI must take the following format: 'ipfs://<cid>/', or an empty string"
+      error = "The base URI must take the following format: 'ipfs://<cid>/' (ending with /), 'https://.../' (ending with /), or an empty string"
     }
   },
   cancel: () => {
