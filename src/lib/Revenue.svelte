@@ -126,6 +126,9 @@ init()
 .faded {
   opacity: 0.4;
 }
+.form {
+  padding: 0;
+}
 .form .item {
   align-items: baseline;
 }
@@ -136,7 +139,7 @@ button, input[type=submit], .btn {
   text-align: left;
 }
 .item {
-  padding: 10px 0;
+  padding: 0;
   border: none;
 }
 .loading {
