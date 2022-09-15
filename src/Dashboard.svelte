@@ -305,7 +305,7 @@ $: {
         {/if}
       {:else}
         <div class='bar'>
-          <button on:click={Ns.edit}>edit</button>
+          <button on:click={Ns.edit}><i class="fa-regular fa-pen-to-square"></i> edit</button>
         </div>
       {/if}
     </div>
@@ -374,7 +374,7 @@ $: {
           {/if}
         {:else}
           <div class='bar'>
-            <button on:click={Config.edit}>edit</button>
+            <button on:click={Config.edit}><i class="fa-regular fa-pen-to-square"></i> edit</button>
           </div>
         {/if}
       </div>

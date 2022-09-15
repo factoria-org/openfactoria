@@ -74,7 +74,7 @@ init()
 <div class='royalty {role}'>
   <h2>Royalty</h2>
   <div class='head'>
-    <button on:click={edit}>edit</button>
+    <button on:click={edit}><i class="fa-regular fa-pen-to-square"></i> edit</button>
   </div>
   {#if editing}
     <div class='form'>
