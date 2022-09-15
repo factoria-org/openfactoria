@@ -52,6 +52,11 @@ const current_net = {
   1: "mainnet",
   5: "goerli",
 }
+const opensea = {
+  4: "https://testnets.opensea.io",
+  1: "https://opensea.io",
+  5: "https://testnets.opensea.io",
+}
 const get = async () => {
   loading = true;
   if (location.hash.length > 0) {
@@ -104,6 +109,10 @@ const get = async () => {
     name: "etherscan",
     link: `https://${netPrefix}etherscan.io/address/${contract}`,
     text: `https://${netPrefix}etherscan.io/address/${contract}`,
+//  }, {
+//    name: "opensea",
+//    link: `${opensea[chainId]}/collection/${contract.toLowerCase()}`,
+//    text: `${opensea[chainId]}/collection/${contract.toLowerCase()}`,
   }, {
     name: "placeholder uri",
     key: "placeholder",
@@ -442,7 +451,7 @@ h1 {
   flex-grow: 1;
 }
 .info .item {
-  padding: 10px 0px;
+  padding: 0px;
   border: none;
 }
 .name {

@@ -144,6 +144,9 @@ init()
 .faded {
   opacity: 0.4;
 }
+.info .item {
+  padding: 0;
+}
 .form .item {
   align-items: baseline;
 }
@@ -155,7 +158,7 @@ button, input[type=submit], .btn {
   margin-bottom: 10px;
 }
 .item {
-  padding: 10px 0;
+  padding: 0;
   border: none;
 }
 .loading {

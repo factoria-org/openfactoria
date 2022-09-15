@@ -72,7 +72,7 @@ button, input[type=submit] {
   margin-bottom: 10px;
 }
 .item {
-  padding: 10px 0;
+  padding: 0;
   border: none;
 }
 .loading {
