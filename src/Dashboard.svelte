@@ -42,6 +42,16 @@ let current_network;
 let current_account;
 let bootstrapped;
 let defaultItem;
+const code = {
+  4: "rinkeby.",
+  1: "",
+  5: "goerli.",
+}
+const current_net = {
+  4: "rinkeby",
+  1: "mainnet",
+  5: "goerli",
+}
 const get = async () => {
   loading = true;
   if (location.hash.length > 0) {
@@ -59,8 +69,8 @@ const get = async () => {
     return
   }
   chainId = await web3.eth.getChainId();
-  netPrefix = (chainId.toString() === "4" ? "rinkeby." : "")
-  current_network = (chainId.toString() === "4" ? "rinkeby" : "mainnet")
+  netPrefix = code[chainId]
+  current_network = current_net[chainId]
   await f0.init({
     web3,
     contract,
@@ -437,7 +447,6 @@ h1 {
 }
 .name {
   text-align: left;
-  color: rgba(255,255,255,0.9);
   padding: 0;
   margin-bottom: 10px;
 }

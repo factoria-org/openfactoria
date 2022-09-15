@@ -393,17 +393,13 @@ table {
 th {
   padding: 10px;
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
-  background: rgba(0,0,0,0.3);
-  color: royalblue;
+  background: rgba(0,0,0,0.1);
 }
 td {
   padding: 10px;
   min-width: 100px;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.1);
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
   word-break: break-all;
 }
 td button {
@@ -477,12 +473,10 @@ button, input[type=submit] {
 }
 h3 {
   font-size: 20px; 
-  color: royalblue;
   margin-bottom: 10px;
 }
 tr.selected td {
-  background: rgba(0,0,0,0.5);
-  color: royalblue;
+  color: black;
 }
 tr.selected a {
   color: white;

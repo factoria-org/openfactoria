@@ -48,6 +48,9 @@ const save = async () => {
   border: none;
   padding: 0;
 }
+input[type=text] {
+  border: 2px solid #eaeaea;
+}
 .disabled {
   background: gray;
 }

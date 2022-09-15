@@ -68,7 +68,6 @@ button, input[type=submit] {
 }
 .item .name {
   text-align: left;
-  color: rgba(255,255,255,0.9);
   padding: 0;
   margin-bottom: 10px;
 }

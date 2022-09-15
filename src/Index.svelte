@@ -57,12 +57,15 @@ const getcollections = async () => {
   loading = false;
   let toremove = []
   for(let i=0; i<collections.length; i++) {
+    console.log("FEtching", i)
     let address = collections[i].address
     await f0.init({
       web3,
       contract: address,
     })
+    console.log("initialized")
     let owner = await f0.api.owner().call()
+    console.log("owner", owner)
     if (owner.toLowerCase() !== current_account.toLowerCase()) {
       console.log("remove at", i)
       toremove.push(i)
@@ -70,8 +73,10 @@ const getcollections = async () => {
     } else {
       let name = await f0.api.name().call()
       let symbol = await f0.api.symbol().call()
+      console.log("name, symbol", name, symbol)
       collections[i].name = name
       collections[i].symbol = symbol
+      collections = collections
     }
   }
   for(let i of toremove) {
@@ -160,7 +165,10 @@ onMount(async () => {
 {:else}
 {#if displayForm === "hidden"}
   <div class='top'>
-    <button on:click={create}>+ create a contract</button>
+    <div class='network'>
+      <div>ACCOUNT: {current_network} {current_account}</div>
+    </div>
+    <button on:click={create}>+ create a collection</button>
   </div>
 {/if}
 <header>
@@ -211,9 +219,29 @@ onMount(async () => {
 {#each collections as collection}
   <a class='item' href="/contract/#{collection.address}">
     {#if collection.name}
-    <h2>{collection.name} ({collection.symbol})</h2>
+    <h2><i class='fa-solid fa-caret-up'></i> {collection.name} ({collection.symbol})</h2>
     {/if}
     <div>{collection.address}</div>
   </a>
 {/each}
 {/if}
+<style>
+.top {
+  font-size: 12px;
+}
+.top .network {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.top button {
+  border: 2px solid white;
+}
+header {
+  background: #EAEAEA;
+}
+/*
+input[type=text], input[type=number], textarea {
+  background: rgba(0,0,0,0.07);
+}
+*/
+</style>

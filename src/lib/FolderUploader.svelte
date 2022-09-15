@@ -201,18 +201,23 @@ const manualSave = async () => {
 {/if}
 <FolderBrowser />
 <style>
+.form .item {
+}
 .form .item label {
-  color: rgba(255,255,255,0.8);
+  color: black;
 }
 .form {
   margin: 0 0 40px;
+  background: #fafafa;
+}
+.form input[type=text] {
+  border: 2px solid #eaeaea;
 }
 label.inline {
   display: inline-block;
 }
 .folder-type {
   padding: 10px;
-  background: rgba(0,0,0,0.1);
   margin: 5px 0 0;
 }
 .btn.disabled {
@@ -226,7 +231,7 @@ label.inline {
 }
 .clickable {
   cursor: pointer;
-  color: royalblue;
+  color: black;
   display: inline-block;
 }
 </style>

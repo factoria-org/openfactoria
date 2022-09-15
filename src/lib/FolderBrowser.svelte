@@ -57,7 +57,6 @@ $: {
   margin-bottom: 30px;
 }
 .tab h2 {
-  color: white;
   padding: 0 10px; 
   border-left: 4px solid white;
 }
@@ -68,18 +67,18 @@ $: {
   padding: 15px 20px;
 }
 .item .val {
-  color: rgba(255,255,255,0.8);
+  color: black;
 }
 .empty {
   padding: 20px;
   font-size: 12px;
   background: rgba(0,0,0,0.1);
-  color: rgba(255,255,255,0.3);
+  color: rgba(0,0,0,0.6);
   text-align: center;
   margin-top: 10px;
 }
 .item button {
   background: none;
-  color: royalblue !important;
+  color: red !important;
 }
 </style>

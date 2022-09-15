@@ -25,6 +25,16 @@ let netPrefix;
 let network;
 let web3;
 let superprovider;
+const code = {
+  4: "rinkeby.",
+  1: "",
+  5: "goerli.",
+}
+const current_net = {
+  4: "rinkeby",
+  1: "mainnet",
+  5: "goerli",
+}
 const authgen = async (_invite) => {
   selectedInvite = _invite;
   showauth = true;
@@ -91,8 +101,8 @@ const render = async () => {
       contract,
     })
     let chainId = await web3.eth.getChainId();
-    netPrefix = (chainId.toString() === "4" ? "rinkeby." : "")
-    network = (chainId.toString() === "4" ? "rinkeby" : "mainnet")
+    netPrefix = code[chainId]
+    network = current_net[chainId]
 
     name = await f0.api.name().call()
     symbol = await f0.api.symbol().call()
@@ -142,29 +152,13 @@ onMount(async () => {
 </script>
 <div class='error'>{error}</div>
 <div class='container'>
-<nav>
-  <h1><a href="/">factoria</a></h1>
-  <div>decentralized NFT vending machine maker</div>
-  <div class='buttons'>
-    <a href="https://factoria.app/docs"><i class="fa-solid fa-circle-question"></i></a>
-    <a href="https://github.com/factoria-org/openfactoria"><i class="fa-brands fa-github"></i></a>
-    <a href="https://twitter.com/skogard"><i class="fa-brands fa-twitter"></i></a>
-    <a href="https://discord.gg/BZtp5F6QQM"><i class="fa-brands fa-discord"></i></a>
-  </div>
-</nav>
-{#if network}
-<div class='network'>
-  <div>{network}</div>
-  <div class='flexible'></div>
-  {#if f0 && f0.account}
-  <div class='account'>{f0.account}</div>
-  {/if}
-</div>
-{/if}
 {#if name}
 <div class='ns'>
   <h2>{name} ({symbol})</h2>
-  <a target="_blank" href="https://{netPrefix}etherscan.io/address/{contract}#code"><img src="/etherscan.png"> {contract}</a>
+  <!--
+  <a target="_blank" href="https://{netPrefix}etherscan.io/address/{contract}#code">ETHERSCAN:{contract}</a>
+  -->
+  <a target="_blank" href="/contract/#{contract}"><i class="fa-solid fa-link"></i> {contract}</a>
   <div class='annotation'>Mint your NFT from an invite list below.</div>
 </div>
 {/if}
@@ -225,6 +219,10 @@ onMount(async () => {
 <footer>
   <i class="fa-solid fa-circle-info"></i> Experiencing slow load time?<br><br>anyone can <a target="_blank" href="https://skinnerbox.factoria.app/#{contract}">instantly deploy this vending machine and mint!</a>
 </footer>
+<nav>
+  <div>powered by</div>
+  <h1><a href="/">factoria</a></h1>
+</nav>
 </div>
 <style>
 .title {
@@ -240,19 +238,23 @@ onMount(async () => {
   font-weight: bold;
 }
 nav {
-  padding: 20px 0;
+  margin-top: 50px;
+  padding: 30px 0;
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
+  color: black;
+  text-align: center;
+  background: #f5f5f5;
 }
 nav h1 {
   padding: 0;
-  font-size: 40px;
-  color: white;
+  font-size: 30px;
+  margin-top: 5px;
+  color: black;
   text-transform: lowercase;
 }
 nav h1 a{
   text-decoration: none;
-  color: white;
+  color: black;
 }
 .container {
   max-width: 600px;
@@ -269,20 +271,18 @@ table {
 th {
   padding: 10px;
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
-  background: rgba(0,0,0,0.3);
-  color: royalblue;
+  color: black;
+  background: #eaeaea;
 }
 td {
   padding: 10px;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.1);
   font-size: 14px;
   /*
   font-family: Menlo, monaco, monospace;
   */
   letter-spacing: 1px;
-  color: rgba(255,255,255,0.9);
+  color: black;
   word-break: break-all;
   text-align: center;
 }
@@ -301,7 +301,7 @@ td button {
   box-sizing: border-box;
 }
 .info {
-  background: rgba(0,0,0,0.2);
+  background: #fafafa;
 }
 .info .item {
   padding: 10px 0 0;
@@ -360,11 +360,12 @@ h2 {
   font-size: 30px;
   padding: 20px;
   font-weight: bold;
+  border: 2px solid #dadada;
 }
 .invitename {
   word-break: break-all;
   padding-right: 20px;
-  color: rgba(255,255,255,0.7);
+  color: black;
   font-weight: bold;
   font-size: 20px;
 }
@@ -379,17 +380,16 @@ h2 {
 }
 .buttons a {
   padding: 5px;
-  color: white;
   font-size: 16px;
+  color: black;
 }
 .ns h2 {
   text-align: left;
-  color: white;
   padding: 0;
   letter-spacing: -2px;
   font-family: sans-serif;
-  font-size: 30px;
-  line-height: 30px;
+  font-size: 40px;
+  line-height: 40px;
 }
 .ns {
 /*
@@ -397,10 +397,9 @@ h2 {
   margin: 10px 5px 20px;
   padding: 10px 20px;
   */
-  padding: 30px;
+  padding: 50px 0 0;
   font-size: 14px;
-  background: rgba(0,0,0,0.2);
-  color: rgba(255,255,255,0.6);
+  color: black;
 }
 .annotation {
   color: white;
@@ -410,8 +409,9 @@ h2 {
 }
 .ns a {
   display: block;
-  padding: 5px 0;
-  color: royalblue;
+  padding: 10px 0;
+  color: black;
+
   font-family: Menlo, monaco, monospace;
   font-size: 12px;
   text-decoration: none;
@@ -427,32 +427,27 @@ h2 {
   width: 100%;
   text-align: center;
   font-size: 12px;
-  background: rgba(0,0,0,0.1);
-  color: rgba(255,255,255,0.6);
 }
 footer {
   padding: 20px;
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
   line-height: 14px;
-  font-family: Menlo, monaco, monospace;
-  background: rgba(0,0,0,0.1);
-  margin-top: 10px;
 }
 footer a {
-  color: royalblue;
-  text-decoration: none;
+  color: black;
 }
 .network {
   font-weight: bold;
-  color: yellowgreen;
+  color: black;
   border-left: 5px solid yellowgreen;
   padding: 5px 10px;
   margin: 0 0 20px;
   font-size: 12px;
 }
 .account {
-  color: yellowgreen;
+  color: black;
   font-size: 12px;
   font-weight: normal;
   font-family: Menlo, monaco, monospace;

@@ -1,10 +1,15 @@
 body {
+/*(
   background: rgba(0,0,0,0.9);
+  */
   font-family: Sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
   color: rgba(255,255,255,0.9);
+  */
+  color: black;
 
 }
 .public button:not(.display), .public .btn:not(.display), .public input[type=submit]:not(.display) {
@@ -14,7 +19,10 @@ header {
   padding: 0 20px;
 }
 button, input[type=submit], .btn {
+/*
   background: royalblue;
+  */
+  background: black;
   color: white !important;
   font-size: 12px;
   padding: 5px 20px;
@@ -33,15 +41,23 @@ button, input[type=submit], .btn {
   box-sizing: border-box;
   text-decoration: none;
   display: block;
+  /*
   color: rgba(255,255,255,0.8);
+  */
+  color: black;
   font-size: 14px;
+  background: rgba(0,0, 100, 0.02);
 }
+/*
 .item:nth-child(odd) {
   background: rgba(43, 55, 140, 0.1);
 }
+*/
 h2 {
   font-size: 14px;
+  /*
   color: royalblue;
+  */
   margin: 0;
 }
 .form {
@@ -59,7 +75,9 @@ h2 {
 }
 .form .item label {
   display: block;
+  /*
   color: royalblue;
+  */
   font-weight: bold;
   text-transform: uppercase;
   font-size: 12px;
@@ -70,17 +88,22 @@ h2 {
 }
 input[type=text][disabled], input[type=number][disabled], textarea[disabled] {
   border: 2px solid transparent;
+  /*
   color: rgba(255,255,255,0.6);
-  background: rgba(0,0,0,0.2);
+  */
+  color: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.1);
 }
 input[type=text], input[type=number], select, textarea {
   border: none;
   width: 100%;
   box-sizing:border-box;
   padding: 10px;
+  /*
   color: white;
   border: 1px solid rgba(65,105,225,0.7);
   background: rgba(65,105,225,0.1);
+  */
   /*
   background: rgba(0,0,0,0.3);
   */
@@ -107,7 +130,7 @@ input[type=file] {
   padding: 10px;
   font-size: 14px;
   text-align: center;
-  color: royalblue;
+  color: black;
   flex-grow: 1;
   border-radius: 2px;
 }
@@ -140,13 +163,14 @@ input[type=file] {
   font-weight: bold;
 }
 .info {
-  margin: 10px 0;
+  margin: 20px 0;
+  background: #F0F0F0;
   padding: 20px;
-  background: rgba(43, 55, 140, 0.1);
 }
 .info h2 {
-  font-size: 30px;
+  font-size: 40px;
   margin: 5px;
+  letter-spacing: -2px;
 }
 h1 {
   margin: 0;
@@ -205,7 +229,7 @@ h3, h4 {
   box-sizing: border-box;
 }
 .info .item a.val {
-  color: royalblue;
+  color: black;
   font-family: Menlo, monaco, monospace; 
   font-size: 12px;
   text-decoration: none;
@@ -231,6 +255,5 @@ pre {
 }
 .top {
   padding: 20px;
-  background: rgba(0,0,0,0.2);
-  margin-bottom: 20px;
+  background: #FAFAFA;
 }
