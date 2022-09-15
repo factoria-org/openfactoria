@@ -163,8 +163,9 @@ input[type=file] {
   font-weight: bold;
 }
 .info {
-  margin: 20px 0;
-  background: #F0F0F0;
+  margin: 20px;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
   padding: 20px;
 }
 .info h2 {
