@@ -33,15 +33,15 @@ export let account;
   flex-grow: 1;
 }
 nav {
-  padding: 20px;
-  font-size: 14px;
+  padding: 20px 20px 10px;
+  font-size: 12px;
 }
 nav a {
   text-decoration: none;
   color: black;
 }
 .desc {
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.8;
 }
 .account {
@@ -57,7 +57,7 @@ nav a {
   font-size: 12px;
 }
 a.brand {
-  font-size: 40px;
+  font-size: 30px;
   text-transform: lowercase;
   letter-spacing: -2px;
   font-weight: bold;
@@ -81,5 +81,6 @@ a.brand {
 }
 .buttons a {
   padding: 5px;
+  font-size: 16px;
 }
 </style>

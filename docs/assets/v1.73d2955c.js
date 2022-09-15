@@ -1,0 +1,1 @@
+import"./index.ab445ea7.js";import{I as t}from"./Index.9c750c76.js";import"./Nav.c6fb4355.js";import"./factory.2ca8d628.js";import"https://cdn.jsdelivr.net/npm/nft.storage/dist/bundle.esm.min.js";import"./db.6824b741.js";import"https://esm.run/localforage";import"./settings.f5ab2b6d.js";new t({target:document.getElementById("index"),props:{version:"v1"}});

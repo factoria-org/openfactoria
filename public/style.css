@@ -62,13 +62,14 @@ h2 {
   margin: 0;
 }
 .form {
+padding: 10px 0;
   box-sizing: border-box;
   /*
   border-left: 3px solid rgba(255,255,255,0.2);
   */
 }
 .form .item {
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
   width: 100%;
   background: none;
