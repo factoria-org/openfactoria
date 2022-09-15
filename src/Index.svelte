@@ -219,7 +219,7 @@ onMount(async () => {
 {#each collections as collection}
   <a class='item' href="/contract/#{collection.address}">
     {#if collection.name}
-    <h2><i class='fa-solid fa-caret-up'></i> {collection.name} ({collection.symbol})</h2>
+    <h2>{collection.name} ({collection.symbol})</h2>
     {/if}
     <div>{collection.address}</div>
   </a>

@@ -54,11 +54,11 @@ $: {
 </div>
 <style>
 .tab {
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 .tab h2 {
-  padding: 0 10px; 
-  border-left: 4px solid white;
+  padding: 0 20px;
 }
 .info {
   padding: 0;
@@ -79,6 +79,6 @@ $: {
 }
 .item button {
   background: none;
-  color: red !important;
+  color: black !important;
 }
 </style>

@@ -37,6 +37,7 @@ button, input[type=submit], .btn {
 }
 
 .item {
+  margin: 10px;
   padding: 10px 20px;
   box-sizing: border-box;
   text-decoration: none;
@@ -61,7 +62,6 @@ h2 {
   margin: 0;
 }
 .form {
-  padding: 10px;
   box-sizing: border-box;
   /*
   border-left: 3px solid rgba(255,255,255,0.2);
@@ -199,7 +199,7 @@ h3, h4 {
   box-sizing: border-box;
 }
 .info .item {
-  padding: 10px 5px;
+  padding: 10px 0px;
   border: none;
   /*
   border-left: 2px solid rgba(0,0,0,0.1);

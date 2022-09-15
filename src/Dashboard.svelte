@@ -442,7 +442,7 @@ h1 {
   flex-grow: 1;
 }
 .info .item {
-  padding: 10px 5px;
+  padding: 10px 0px;
   border: none;
 }
 .name {

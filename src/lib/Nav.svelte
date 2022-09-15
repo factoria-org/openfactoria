@@ -8,7 +8,7 @@ export let account;
 </script>
 <nav>
   <div class='flex'>
-    <a class='brand' href="/"><i class='fa-solid fa-caret-up'></i> Factoria</a>
+    <a class='brand' href="/"><i class='fa-solid fa-angle-up'></i> Factoria</a>
     <div class='flexible'></div>
     <div class='buttons'>
       <a href="https://factoria.app/docs"><i class="fa-solid fa-circle-question"></i></a>
@@ -57,15 +57,10 @@ nav a {
   font-size: 12px;
 }
 a.brand {
-  display: flex;
   font-size: 40px;
   text-transform: lowercase;
   letter-spacing: -2px;
   font-weight: bold;
-  align-items: flex-end;
-}
-a.brand i {
-  margin-right: 10px;
 }
 .navbar {
   padding: 10px 0 0;
